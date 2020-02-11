@@ -35,8 +35,14 @@ void TC0_Handler(void)
 	//************
 	// Here should signal processing code be placed
 	
-	outvalue=invalue;
-	
+	static uint16_t buffer[10000]={0};
+	static uint32_t k=0;
+
+	buffer[k]=invalue;
+	k++;
+	if (k==10000) k=0;
+	outvalue = buffer[k]+invalue;
+
 	
 	
 	//***********
